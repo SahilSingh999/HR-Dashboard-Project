@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { TopMetricsRow } from "@/components/top-metrics-row";
 import { CircularTimeTracker } from "@/components/circular-time-tracker";
 import { WeeklyProgress } from "@/components/weekly-progress";
@@ -17,7 +17,7 @@ import {
   mockOnboardingTasks 
 } from "@/lib/mock-data";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -27,7 +27,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
 };
@@ -44,10 +44,14 @@ export default function Home() {
   const onboardingStatus = useMemo(() => {
     const completed = tasks.filter(t => t.isCompleted).length;
     const total = tasks.length;
+    const overallPercentage = total > 0 ? Math.round((completed / total) * 100) : 0;
     return {
       totalTasks: total,
       completedTasks: completed,
-      overallPercentage: total > 0 ? Math.round((completed / total) * 100) : 0
+      overallPercentage,
+      taskPercentage: overallPercentage,
+      reviewPercentage: 0,
+      emptyPercentage: 100 - overallPercentage
     };
   }, [tasks]);
 
