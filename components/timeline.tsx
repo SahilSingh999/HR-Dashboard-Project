@@ -41,18 +41,18 @@ export function Timeline({ events }: TimelineProps) {
         className="relative flex-1"
       >
         {/* Continuous Vertical Line */}
-        <div className="absolute left-[93.5px] top-4 bottom-4 w-px bg-border/50" />
+        <div className="absolute left-[65.5px] sm:left-[93.5px] top-4 bottom-4 w-px bg-border/50" />
 
         <div className="space-y-6">
           {events.map((event, index) => (
             <motion.div 
               key={event.id} 
               variants={itemVariants}
-              className="relative flex items-start gap-6 group"
+              className="relative flex items-start gap-3 sm:gap-6 group"
             >
               {/* Time */}
-              <div className="w-[64px] shrink-0 text-right pt-1">
-                <span className="text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
+              <div className="w-[48px] sm:w-[64px] shrink-0 text-right pt-1">
+                <span className="text-xs sm:text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
                   {event.time}
                 </span>
               </div>

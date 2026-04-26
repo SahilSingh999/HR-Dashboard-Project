@@ -37,14 +37,14 @@ export function TopMetricsRow({ data }: { data: TopMetricsSummary }) {
   ];
 
   return (
-    <div className="flex flex-col xl:flex-row gap-10 items-end justify-between w-full">
+    <div className="flex flex-col xl:flex-row gap-6 xl:gap-10 items-start xl:items-end justify-between w-full">
       {/* Segmented Progress Bar Section */}
       <div className="flex-1 w-full pt-2">
         {/* Labels Row */}
         <div className="flex w-full gap-2 mb-3 px-1">
           {segments.map((segment, i) => (
             <div key={`label-${i}`} style={{ width: `${segment.value}%` }} className="flex-shrink-0">
-              <span className="text-sm font-medium text-foreground whitespace-nowrap">
+              <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap">
                 {segment.label}
               </span>
             </div>
@@ -64,7 +64,7 @@ export function TopMetricsRow({ data }: { data: TopMetricsSummary }) {
                 segment.className
               )}
             >
-              <span className="relative z-10">{segment.value}%</span>
+              <span className="relative z-10 text-xs sm:text-sm">{segment.value}%</span>
             </motion.div>
           ))}
         </div>
@@ -74,11 +74,11 @@ export function TopMetricsRow({ data }: { data: TopMetricsSummary }) {
       <div className="hidden xl:block w-px h-16 bg-border mx-2" />
       
       {/* Stats Section */}
-      <div className="flex gap-8 w-full xl:w-auto justify-between xl:justify-end pb-1">
+      <div className="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-8 w-full xl:w-auto justify-between xl:justify-end pb-1">
         {stats.map((stat, i) => (
-          <div key={i} className="flex flex-col items-center xl:items-end">
-            <span className="text-3xl lg:text-4xl font-heading font-bold">{stat.value}</span>
-            <span className="text-sm text-muted-foreground font-medium mt-1">{stat.label}</span>
+          <div key={i} className="flex flex-col items-start sm:items-center xl:items-end w-[45%] sm:w-auto">
+            <span className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold">{stat.value}</span>
+            <span className="text-xs sm:text-sm text-muted-foreground font-medium mt-1">{stat.label}</span>
           </div>
         ))}
       </div>
